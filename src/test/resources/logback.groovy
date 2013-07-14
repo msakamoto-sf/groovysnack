@@ -8,4 +8,4 @@ appender('CONSOLE', ConsoleAppender) {
     }
 }
 
-root(INFO, ['CONSOLE'])
+root(TRACE, ['CONSOLE'])

@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package groovysnack.bean
+package groovysnack
 
-import static org.testng.Assert.*
+import groovy.util.logging.*
 
-import org.testng.annotations.Test
-
-class PeopleTest
-{
-    @Test
-    void basic() {
-        def p1 = new People(groovyUser:true, age:20, name:'Jon', birthday:new Date())
-        assert p1.groovyUser
-        assert p1.age == 20
-        assert p1.name == 'Jon'
-        assert p1.birthday
+@Slf4j
+class Main {
+    static void main(args) {
+        println 'Hello, Groovy'
+        log.trace('trace message')
+        log.debug('debug message')
+        log.info('info message')
+        log.warn('warn message')
+        log.error('error message')
     }
 }
+

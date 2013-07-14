@@ -18,8 +18,10 @@ package groovysnack
 import groovy.util.logging.*
 
 @Slf4j
-class Main {
-    static void main(args) {
+class Main
+{
+    static void main(args)
+    {
         println 'Hello, Groovy'
         log.trace('trace message')
         log.debug('debug message')

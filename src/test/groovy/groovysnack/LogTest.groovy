@@ -15,14 +15,16 @@
  */
 package groovysnack
 
-import org.testng.annotations.Test
 import groovy.util.logging.*
+
+import org.testng.annotations.Test
 
 @Slf4j
 class LogTest
 {
     @Test
-    void log() {
+    void log()
+    {
         log.trace('trace message')
         log.debug('debug message')
         log.info('info message')

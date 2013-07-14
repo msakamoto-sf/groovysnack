@@ -15,7 +15,8 @@
  */
 package groovysnack.bean
 
-class People {
+class People
+{
     Boolean groovyUser
     Integer age
     String name

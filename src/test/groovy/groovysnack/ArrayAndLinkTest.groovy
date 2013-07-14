@@ -32,6 +32,8 @@ class ArrayAndLinkTest
     @Test
     void traditionalArray()
     {
+        // see : http://groovy.codehaus.org/FAQ+-+Collections,+Lists,+etc.
+
         String[] ar1 = ['abc', 'def', 'ghi']
         assert ar1.size() == 3
         assert 'abcdefghi' == TraditionalArrayTool.joinStringArray(ar1)

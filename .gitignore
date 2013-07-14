@@ -1,0 +1,4 @@
+.settings/*
+.gradle/*
+build/*
+test-output/*

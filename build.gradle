@@ -1,0 +1,57 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+
+archivesBaseName = 'groovysnack'
+description = 'Tinny Groovy Excersise, Experimental, Practices Programms.'
+defaultTasks 'clean', 'test'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+/* See:
+ * http://java.dzone.com/articles/gradle-goodness-set-java
+ * http://www.gradle.org/docs/current/dsl/org.gradle.api.tasks.compile.CompileOptions.html
+ */
+tasks.withType(Compile) {
+    sourceCompatibility = '1.7'
+    targetCompatibility = '1.7'
+    options.encoding = 'UTF-8'
+    options.debug = true
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.6'
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.1.6'
+    compile 'org.slf4j:slf4j-api:1.7.2'
+    compile 'ch.qos.logback:logback-classic:1.0.9'
+    testCompile 'org.testng:testng:6.8.5'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'junit:junit:4.11'
+}
+
+// default test task (=JUnit) depends on testTestNG task
+// => testTestNG task run, then, test task run.
+task testTestNG(type: Test) {
+    useTestNG()
+    testReportDir = file('test-output/testng/test-reports')
+    testResultsDir = file('test-output/testng/test-results')
+}
+
+test {
+    // default : JUnit
+    testReportDir = file('test-output/junit-spock/test-reports')
+    testResultsDir = file('test-output/junit-spock/test-results')
+    dependsOn 'testTestNG'
+}
+
+clean {
+    delete << 'test-output'
+}
+

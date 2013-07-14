@@ -15,11 +15,36 @@
  */
 package groovysnack.bean
 
+import groovy.transform.*
+
 class People
 {
     Boolean groovyUser
     Integer age
     String name
     Date birthday
+}
+
+/**
+ * @see http://mrhaki.blogspot.jp/2011/05/groovy-goodness-canonical-annotation-to.html
+ */
+@Canonical
+class CanonicalizedPeople
+{
+    Boolean groovyUser
+    Integer age
+    String name
+}
+
+/**
+ * @see http://mrhaki.blogspot.jp/2009/09/groovy-goodness-making-class-immutable.html
+ */
+@Immutable
+class ImmutablePeople
+{
+    Boolean groovyUser
+    Integer age
+    String name
+    Collection<String> friends
 }
 

@@ -33,6 +33,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.1.6'
     compile 'org.slf4j:slf4j-api:1.7.2'
     compile 'ch.qos.logback:logback-classic:1.0.9'
+    compile files('subprojects/jar1/testjar1-1.0.jar')
     testCompile 'org.testng:testng:6.8.5'
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
     testCompile 'junit:junit:4.11'

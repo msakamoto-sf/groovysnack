@@ -15,23 +15,16 @@
  */
 package groovysnack
 
-import groovy.util.logging.*
+import org.testng.annotations.Test
+
 import testjar1.Greeting
 
-@Slf4j
-class Main
+class FileDependencyTest
 {
-    static void main(args)
+    @Test
+    void log()
     {
-        println 'Hello, Groovy'
-        log.trace('trace message')
-        log.debug('debug message')
-        log.info('info message')
-        log.warn('warn message')
-        log.error('error message')
-        
         Greeting g = new Greeting()
-        println g.morning("abc")
+        assert 'Grood Morning, abc.' == g.morning('abc')
     }
 }
-

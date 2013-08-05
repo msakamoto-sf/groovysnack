@@ -15,11 +15,28 @@
  */
 package groovysnack.enums
 
+import org.testng.annotations.BeforeSuite
 import org.testng.annotations.Test
 
+/**
+ * enum demos by test cases.
+ *
+ * @see http://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
+ * @see http://www.atmarkit.co.jp/ait/articles/1103/03/news107.html
+ * @see http://d.hatena.ne.jp/amachang/20100225/1267114471
+ * @see http://d.hatena.ne.jp/ashigeru/20090116/1232128313
+ * @see http://d.hatena.ne.jp/ashigeru/20090119/1232365391
+ * @author "Masahiko Sakamoto" <sakamoto.gsyc.3s@gmail.com>
+ */
 class EnumBasicsTest {
 
-    // --------------------------------------------------------
+    @BeforeSuite
+    void beforeSuite()
+    {
+        println "Running Groovy Version : " + GroovySystem.getVersion()
+    }
+
+        // --------------------------------------------------------
     /*
      * Simple enum demo
      */
@@ -144,10 +161,10 @@ class EnumBasicsTest {
             this.greeting = _greeting
         }
 
-        // DIFFER TO JAVA (1)
+        // http://jira.codehaus.org/browse/GROOVY-4641 fix it.
         //abstract String hello(String yourName)
         String hello(String yourName) {
-            return "Groovy enum can't override super method."
+            return "see GROOVY-4641 & GROOVY-6065"
         }
 
         String getGreeting() {
@@ -161,15 +178,16 @@ class EnumBasicsTest {
 
     @Test
     public void enumsWithMethod() {
-        // DIFFER TO JAVA (1)
-        String expected = "Groovy enum can't override super method."
+        // http://jira.codehaus.org/browse/GROOVY-6065 fix it.
+        String expected = "see GROOVY-4641 & GROOVY-6065"
+        println GroovySystem.getVersion()
         assert EnumsWithMethod.MORNING.hello("foo") == expected
         assert EnumsWithMethod.AFTERNOON.hello("bar") == expected
         assert EnumsWithMethod.EVENING.hello("baz") == expected
 
         assert EnumsWithMethod.MORNING.getGreeting() == "Good Morning"
 
-        // DIFFER TO JAVA (2)
+        // TODO http://jira.codehaus.org/browse/GROOVY-6065 may fix it.
         // Overriden methods by enum are ignored.
         assert EnumsWithMethod.AFTERNOON.getGreeting() != "Good Afternoon, but sleepy..."
         // super methods are called.
@@ -183,7 +201,7 @@ class EnumBasicsTest {
      * enum can implements interface method
      */
 
-    // DIFFER TO JAVA (3)
+    // 2.0.7 - 2.1.6 (?)
     // can't implements inner interface
     //    interface HelloInterface {
     //        public String sayHello(String yourName);
@@ -208,7 +226,7 @@ class EnumBasicsTest {
         final String myName;
 
         /*
-         * DIFFER TO JAVA (4)
+         * 2.0.7 - 2.1.6 (?)
          * Groovy:Can't have an abstract method in a non-abstract class.
          * The class 'groovysnack.enums.EnumBasicsTest$EnumWithInterface' must be 
          * declared abstract or the method 'java.lang.String sayHello(java.lang.String)' 
@@ -231,7 +249,7 @@ class EnumBasicsTest {
     @Test
     public void enumWithInterface() {
 
-        // DIFFER TO JAVA (5)
+        // TODO http://jira.codehaus.org/browse/GROOVY-6065 may fix it.
         // Overriden methods by enum are ignored.
         assert EnumWithInterface.ME_THEN_YOU.sayHello("abc") != "I'm foo, you're abc."
         // super methods are called.
